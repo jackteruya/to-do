@@ -18,6 +18,9 @@ class CreateToDoUseCase:
                 return ResponseFailure(ResponseTypes.PARAMETERS_ERROR, 'Not Found')
             return ResponseSuccess(result)
         except (ValidationError, ParametersError) as pe:
-            return ResponseFailure(ResponseTypes.PARAMETERS_ERROR, 'Fields Required: [{"title": "string", "description": "string"}]')
+            return ResponseFailure(
+                ResponseTypes.PARAMETERS_ERROR,
+                'Fields Required: [{"title": "string", "description": "string"}]'
+            )
         except Exception as ex:
             return ResponseFailure(ResponseTypes.SYSTEM_ERROR, 'System Error')
