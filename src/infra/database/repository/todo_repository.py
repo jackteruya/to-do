@@ -13,10 +13,8 @@ class ToDoRepository(ToDoRepositoryInterface):
     def get_by_id(self, id: int):
         try:
             with self.__db_connection() as db_connection:
-                todo = db_connection.session.execute(
-                    select(ToDo).where(ToDo.id == id)
-                )
-                return todo.one_or_none()
+                todo = db_connection.session.query(ToDo).filter_by(id=id).first()
+                return todo
         except Exception as ex:
             return None
 

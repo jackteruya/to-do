@@ -4,6 +4,7 @@ from flask import Response
 from flask_restx import Resource, Namespace, fields
 
 from src.application.controllers.create_todo_controller import CreateTodoController
+from src.application.controllers.detail_todo_controller import DetailTodoController
 from src.application.controllers.list_todo_controller import ListTodoController
 from src.application.status import STATUS_CODES
 from src.serializers.todo import ToDoJsonEncoder
@@ -50,11 +51,12 @@ class ListCreateToDoApi(Resource):
 class DeleteDetailUpdateToDoApi(Resource):
 
     @todo_api.doc('detail todo')
-    def get(self, id: int):
+    def get(self, id: int, controller = DetailTodoController()):
+        result = controller.execute(id)
         return Response(
-            json.dumps({'msg': [{'d': 1}, {'d': 2}, {'d': 3}]}),
+            json.dumps(result.value, cls=ToDoJsonEncoder),
             mimetype="application/json",
-            status=STATUS_CODES['Success'],
+            status=STATUS_CODES[result.type],
         )
 
     @todo_api.doc('update todo')
