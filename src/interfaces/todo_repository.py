@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from datetime import date
 
 
 class ToDoRepositoryInterface(ABC):
@@ -20,7 +21,7 @@ class ToDoRepositoryInterface(ABC):
         raise Exception("Method not implemented")
 
     @abstractmethod
-    async def edit_todo(self, id: int, title: str, description: str, completed: bool):
+    async def edit_todo(self, id: int, title: str, description: str, completed: bool, start_date: date, end_date: date):
         """abstractmethod"""
         raise Exception("Method not implemented")
 

@@ -1,3 +1,5 @@
+from datetime import date
+
 from sqlalchemy import select, update, delete
 
 from src.infra.database.entities import ToDo
@@ -39,19 +41,19 @@ class ToDoRepository(ToDoRepositoryInterface):
                 db_connection.session.add(new_todo)
                 db_connection.session.commit()
                 db_connection.session.refresh(new_todo)
-
             return new_todo
         except Exception as ex:
             return None
 
-    def edit_todo(self, id: int, title: str, description: str, completed: bool):
+    def edit_todo(self, id: int, title: str, description: str, completed: bool, start_date: date, end_date: date):
         try:
-            todo = None
             with self.__db_connection() as db_connection:
                 todo = update(ToDo).where(ToDo.id == id).values(
                     title=title,
                     description=description,
-                    completed=completed
+                    completed=completed,
+                    start_date=start_date,
+                    end_date=end_date
                 )
                 db_connection.session.execute(todo)
                 db_connection.session.commit()
