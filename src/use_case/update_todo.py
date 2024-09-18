@@ -1,0 +1,46 @@
+import re
+from datetime import datetime
+
+from pydantic import ValidationError
+
+from src.dto.todo_update_dto import ToDoUpdateRequest
+from src.exception.custom_errors import ParametersError
+from src.interfaces.todo_repository import ToDoRepositoryInterface
+from src.response import ResponseFailure, ResponseTypes, ResponseSuccess
+
+
+class UpdateToDoUseCase:
+    def __init__(self, todo_repository: ToDoRepositoryInterface):
+        self._todo_repository = todo_repository
+
+    def execute(self, id: int, todo_data: dict):
+        try:
+            data = ToDoUpdateRequest(**todo_data)
+            if self._todo_repository.edit_todo(id, data.title, data.description, data.completed, data.start_date, data.end_date):
+                result = self._todo_repository.get_by_id(id)
+                if not result:
+                    return ResponseFailure(ResponseTypes.NOT_FOUND_ERROR, 'Not Found')
+                return ResponseSuccess(result)
+            return ResponseFailure(ResponseTypes.NOT_FOUND_ERROR, 'Not Found')
+        except (ValidationError, ParametersError) as pe:
+            return ResponseFailure(
+                ResponseTypes.PARAMETERS_ERROR,
+                'Fields Required: ['
+                '{"title": "string", '
+                '"description": "string", '
+                '"completed": "boolean", '
+                '"start_date": "date", '
+                '"end_date": "date"}]'
+            )
+        except Exception as ex:
+            return ResponseFailure(ResponseTypes.SYSTEM_ERROR, 'System Error')
+
+    @staticmethod
+    def validate_data(data: dict):
+        update_data = dict()
+        for k, v in data.items():
+            if v is not None:
+                if isinstance(v, str) and re.match(r"(\d{4}-\d{2}-\d{2})", v):
+                    v = datetime.strptime(v, '%Y-%m-%d')
+                update_data[k] = v
+        return update_data

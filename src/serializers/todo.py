@@ -9,8 +9,8 @@ class ToDoJsonEncoder(json.JSONEncoder):
                 "title": obj.title,
                 "description": obj.description,
                 "completed": obj.completed,
-                "start_date": obj.start_date.strftime('%d-%m-%Y'),
-                "end_date": obj.end_date.strftime('%d-%m-%Y')
+                "start_date": obj.start_date.strftime('%d-%m-%Y') if obj.start_date else "",
+                "end_date": obj.end_date.strftime('%d-%m-%Y') if obj.start_date else ""
             }
             return to_serialize
         except AttributeError:  # pragma: no cover

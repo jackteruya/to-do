@@ -7,6 +7,7 @@ from src.application.controllers.create_todo_controller import CreateTodoControl
 from src.application.controllers.detail_todo_controller import DetailTodoController
 from src.application.controllers.list_todo_controller import ListTodoController
 from src.application.controllers.partial_update_todo_controller import PartialUpdateTodoController
+from src.application.controllers.update_todo_controller import UpdateTodoController
 from src.application.status import STATUS_CODES
 from src.serializers.todo import ToDoJsonEncoder
 
@@ -25,14 +26,14 @@ class ListCreateToDoApi(Resource):
     @todo_api.doc('list todo')
     def get(self, controller = ListTodoController()):
         result = controller.execute()
+
         if not result:
-            Response(
-                json.dumps(result.value),
-                mimetype="application/json",
-                status=STATUS_CODES[result.type],
-            )
+            json_data = json.dumps(result.value)
+        else:
+            json_data = json.dumps(result.value, cls=ToDoJsonEncoder)
+
         return Response(
-            json.dumps(result.value, cls=ToDoJsonEncoder),
+            json_data,
             mimetype="application/json",
             status=STATUS_CODES[result.type],
         )
@@ -71,19 +72,32 @@ class DeleteDetailUpdateToDoApi(Resource):
     @todo_api.doc('detail todo')
     def get(self, id: int, controller = DetailTodoController()):
         result = controller.execute(id)
+
+        if not result:
+            json_data = json.dumps(result.value)
+        else:
+            json_data = json.dumps(result.value, cls=ToDoJsonEncoder)
+
         return Response(
-            json.dumps(result.value, cls=ToDoJsonEncoder),
+            json_data,
             mimetype="application/json",
             status=STATUS_CODES[result.type],
         )
 
     @todo_api.expect(resource_fields_put)
     @todo_api.doc('update todo')
-    def put(self, id: int):
+    def put(self, id: int, controller = UpdateTodoController()):
+        result = controller.execute(id, todo_api.payload)
+
+        if not result:
+            json_data = json.dumps(result.value)
+        else:
+            json_data = json.dumps(result.value, cls=ToDoJsonEncoder)
+
         return Response(
-            json.dumps({'msg': [{'d': 1}, {'d': 2}, {'d': 3}]}),
+            json_data,
             mimetype="application/json",
-            status=STATUS_CODES['Create'],
+            status=STATUS_CODES[result.type],
         )
 
     @todo_api.expect(resource_fields_patch)
