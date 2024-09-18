@@ -5,6 +5,7 @@ class ResponseTypes:
     NOT_FOUND_ERROR = "NotFoundError"
     SUCCESS = "Success"
     CREATE = "Create"
+    DELETE = "Delete"
 
 
 class ResponseFailure:
@@ -36,11 +37,10 @@ class ResponseSuccess:
         return True
 
 
-def build_response_from_invalid_request(invalid_request):
-    message = "\n".join(
-        [
-            "{}: {}".format(err["parameter"], err["message"])
-            for err in invalid_request.errors
-        ]
-    )
-    return ResponseFailure(ResponseTypes.PARAMETERS_ERROR, message)
+class ResponseDelete:
+    def __init__(self, value=None):
+        self.type = ResponseTypes.DELETE
+        self.value = value
+
+    def __bool__(self):
+        return True

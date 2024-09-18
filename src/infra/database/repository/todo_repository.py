@@ -79,5 +79,6 @@ class ToDoRepository(ToDoRepositoryInterface):
                 todo = delete(ToDo).where(ToDo.id == id)
                 db_connection.session.execute(todo)
                 db_connection.session.commit()
+            return True
         except Exception as ex:
             return None
