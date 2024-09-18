@@ -1,10 +1,10 @@
 import json
 
-from dulwich.porcelain import status
 from flask import Response
 from flask_restx import Resource, Namespace, fields
 
 from src.application.controllers.create_todo_controller import CreateTodoController
+from src.application.controllers.list_todo_controller import ListTodoController
 from src.application.status import STATUS_CODES
 from src.serializers.todo import ToDoJsonEncoder
 
@@ -21,11 +21,18 @@ resource_fields = todo_api.model('ToDo', {
 class ListCreateToDoApi(Resource):
 
     @todo_api.doc('list todo')
-    def get(self):
+    def get(self, controller = ListTodoController()):
+        result = controller.execute()
+        if not result:
+            Response(
+                json.dumps(result.value),
+                mimetype="application/json",
+                status=STATUS_CODES[result.type],
+            )
         return Response(
-            json.dumps({'msg': [{'d': 1}, {'d': 2}, {'d': 3}]}),
+            json.dumps(result.value, cls=ToDoJsonEncoder),
             mimetype="application/json",
-            status=STATUS_CODES['Success'],
+            status=STATUS_CODES[result.type],
         )
 
     @todo_api.expect(resource_fields)
