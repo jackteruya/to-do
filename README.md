@@ -44,7 +44,7 @@ Endpoint:
     - http://127.0.0.1:5000/api/v1/todo/
     - Metodo -> POST
     - ex: `curl -X 'POST' \
-          'http://127.0.0.1:8000/api/v1/todo/' \
+          'http://127.0.0.1:5000/api/v1/todo/' \
           -H 'accept: application/json' \
           -H 'Content-Type: application/json' \
           -d '{
@@ -62,10 +62,10 @@ Endpoint:
 
 
  - Buscar ToDo 
-    - http://127.0.0.1:8000/api/v1/todo/{id}/
+    - http://127.0.0.1:5000/api/v1/todo/{id}/
     - Metodo -> GET
     - ex: `curl -X 'GET' \
-      'http://127.0.0.1:8000/api/v1/todo/49/'`
+      'http://127.0.0.1:5000/api/v1/todo/49/'`
     - ex response: `{
                      "id": 49,
                      "title": "string",
@@ -77,10 +77,10 @@ Endpoint:
 
 
  - Listar ToDo
-   - http://127.0.0.1:8000/api/v1/todo/
+   - http://127.0.0.1:5000/api/v1/todo/
    - Metodo -> GET
    - ex: `curl -X 'GET' \
-     'http://127.0.0.1:8000/api/v1/todo/'`
+     'http://127.0.0.1:5000/api/v1/todo/'`
    - ex response: `[
                         {
                             "id": 1,
@@ -102,10 +102,10 @@ Endpoint:
 
 
  - Atualizar parcialmente ToDo
-   - http://127.0.0.1:8000/api/v1/todo/{id}/
+   - http://127.0.0.1:5000/api/v1/todo/{id}/
    - Metodo -> PATCH
    - ex: `curl -X 'PATCH' \
-     'http://127.0.0.1:8000/api/v1/todo/49/' \
+     'http://127.0.0.1:5000/api/v1/todo/49/' \
       -H 'accept: application/json' \
           -H 'Content-Type: application/json' \
           -d '{
@@ -121,10 +121,10 @@ Endpoint:
                    }`
 
  - Atualizar Full ToDo
-   - http://127.0.0.1:8000/api/v1/todo/{id}/
+   - http://127.0.0.1:5000/api/v1/todo/{id}/
    - Metodo -> PUT
    - ex: `curl -X 'PUT' \
-      'http://127.0.0.1:8000/api/v1/todo/49/' \
+      'http://127.0.0.1:5000/api/v1/todo/49/' \
    -H 'accept: application/json' \
        -H 'Content-Type: application/json' \
        -d '{
@@ -142,3 +142,21 @@ Endpoint:
                  "end_date": "2024-09-19"
                }`
  
+ - Deletar ToDo
+   - http://127.0.0.1:5000/api/v1/todo/{id}/
+   - Metodo -> DELETE
+   - ex: `curl -X 'DELETE' \
+     'http://127.0.0.1:5000/api/v1/todo/49/' \
+      -H 'accept: application/json' \
+          -H 'Content-Type: application/json' \
+          -d '{
+           "completed": true
+          }'`
+   - ex response: `{
+                     "id": 49,
+                     "title": "string",
+                     "description": "string",
+                     "completed": true,
+                     "start_date": "",
+                     "end_date": ""
+                   }`
