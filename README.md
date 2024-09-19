@@ -9,7 +9,7 @@ Para rodar a aplicação será necessario ter o python instaldo, de preferencia 
         $ source .venv/bin/activate
 
     3 - Instalando os requisitos:
-        $ pip install -r requierements.txt
+        $ pip install -r requirements.txt
 
     3.1 - Ou com poetry (versão python 3.12):
         $ pip install poetry
