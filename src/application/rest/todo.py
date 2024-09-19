@@ -15,7 +15,7 @@ from src.serializers.todo import ToDoJsonEncoder
 todo_api = Namespace('todo', description='Check status API')
 
 
-resource_fields = todo_api.model('ToDo', {
+resource_fields = todo_api.model('ToDo Create', {
     'title': fields.String(required=True),
     'description': fields.String(required=True)
 })
@@ -44,7 +44,7 @@ class ListCreateToDoApi(Resource):
         )
 
 
-resource_fields_patch = todo_api.model('ToDo', {
+resource_fields_patch = todo_api.model('ToDo Partial Update', {
     'title': fields.String,
     'description': fields.String,
     'completed': fields.Boolean,
@@ -52,7 +52,7 @@ resource_fields_patch = todo_api.model('ToDo', {
     'end_date': fields.Date,
 })
 
-resource_fields_put = todo_api.model('ToDo', {
+resource_fields_put = todo_api.model('ToDo Update', {
     'title': fields.String(required=True),
     'description': fields.String(required=True),
     'completed': fields.Boolean(required=True),
