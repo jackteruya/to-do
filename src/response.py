@@ -37,6 +37,15 @@ class ResponseSuccess:
         return True
 
 
+class ResponseCreate:
+    def __init__(self, value=None):
+        self.type = ResponseTypes.CREATE
+        self.value = value
+
+    def __bool__(self):
+        return True
+
+
 class ResponseDelete:
     def __init__(self, value=None):
         self.type = ResponseTypes.DELETE
