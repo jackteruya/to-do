@@ -15,7 +15,7 @@ Para rodar a aplicação será necessario ter o python instaldo, de preferencia 
         $ pip install poetry
         $ poetry init
 
-    4 - É necessario adicionar na raiz do projeto um arquivo .env com os seguintes dados, ou copie e cole renomeando o arquivo .env.example para .env:
+    4 - É necessario adicionar na raiz do projeto um arquivo .env com os dados abaixo, ou copie e cole renomeando o arquivo .env.example para .env:
          URL_PREFIX=/api/v1
          DB_URL=sqlite:///backend_database.db
 
