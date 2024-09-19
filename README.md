@@ -43,10 +43,10 @@ Endpoint:
   - Criar novo ToDo;
     - http://127.0.0.1:5000/api/v1/todo/
     - Metodo -> POST
-    - ex: `curl -X 'POST' \
-          'http://127.0.0.1:5000/api/v1/todo/' \
-          -H 'accept: application/json' \
-          -H 'Content-Type: application/json' \
+    - ex: `curl -X 'POST'
+          'http://127.0.0.1:5000/api/v1/todo/'
+          -H 'accept: application/json'
+          -H 'Content-Type: application/json'
           -d '{
           "title": "string",
           "description": "string"
@@ -64,8 +64,7 @@ Endpoint:
  - Buscar ToDo 
     - http://127.0.0.1:5000/api/v1/todo/{id}/
     - Metodo -> GET
-    - ex: `curl -X 'GET' \
-      'http://127.0.0.1:5000/api/v1/todo/49/'`
+    - ex: `curl -X 'GET' 'http://127.0.0.1:5000/api/v1/todo/49/'`
     - ex response: `{
                      "id": 49,
                      "title": "string",
@@ -79,8 +78,7 @@ Endpoint:
  - Listar ToDo
    - http://127.0.0.1:5000/api/v1/todo/
    - Metodo -> GET
-   - ex: `curl -X 'GET' \
-     'http://127.0.0.1:5000/api/v1/todo/'`
+   - ex: `curl -X 'GET' 'http://127.0.0.1:5000/api/v1/todo/'`
    - ex response: `[
                         {
                             "id": 1,
@@ -104,10 +102,10 @@ Endpoint:
  - Atualizar parcialmente ToDo
    - http://127.0.0.1:5000/api/v1/todo/{id}/
    - Metodo -> PATCH
-   - ex: `curl -X 'PATCH' \
-     'http://127.0.0.1:5000/api/v1/todo/49/' \
-      -H 'accept: application/json' \
-          -H 'Content-Type: application/json' \
+   - ex: `curl -X 'PATCH'
+          'http://127.0.0.1:5000/api/v1/todo/49/'
+          -H 'accept: application/json'
+          -H 'Content-Type: application/json'
           -d '{
            "completed": true
           }'`
@@ -123,10 +121,10 @@ Endpoint:
  - Atualizar Full ToDo
    - http://127.0.0.1:5000/api/v1/todo/{id}/
    - Metodo -> PUT
-   - ex: `curl -X 'PUT' \
-      'http://127.0.0.1:5000/api/v1/todo/49/' \
-   -H 'accept: application/json' \
-       -H 'Content-Type: application/json' \
+   - ex: `curl -X 'PUT'
+      'http://127.0.0.1:5000/api/v1/todo/49/'
+       -H 'accept: application/json'
+       -H 'Content-Type: application/json'
        -d '{
          "title": "string Update",
          "description": "string Update",
