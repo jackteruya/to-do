@@ -145,18 +145,4 @@ Endpoint:
  - Deletar ToDo
    - http://127.0.0.1:5000/api/v1/todo/{id}/
    - Metodo -> DELETE
-   - ex: `curl -X 'DELETE' \
-     'http://127.0.0.1:5000/api/v1/todo/49/' \
-      -H 'accept: application/json' \
-          -H 'Content-Type: application/json' \
-          -d '{
-           "completed": true
-          }'`
-   - ex response: `{
-                     "id": 49,
-                     "title": "string",
-                     "description": "string",
-                     "completed": true,
-                     "start_date": "",
-                     "end_date": ""
-                   }`
+   - ex: `curl -X 'DELETE' 'http://127.0.0.1:5000/api/v1/todo/49/'`
