@@ -15,26 +15,34 @@ Para rodar a aplicação será necessario ter o python instaldo, de preferencia 
         $ pip install poetry
         $ poetry init
 
-    4 - Para rodar o projeto, na raiz do projeto:
+    4 - É necessario adicionar na raiz do projeto um arquivo .env com os seguintes dados, ou copie e cole renomeando o arquivo .env.example para .env:
+         URL_PREFIX=/api/v1
+         DB_URL=sqlite:///backend_database.db
+
+    5 - Antes de rodar a aplicação é necessario gerar o banco de dados SQLite:
+        $ alembic upgrade head
+
+    6 - Para rodar o projeto, na raiz do projeto:
         $ python -m main
    
-    4.1 - Ou com gunicorn:
+    6.1 - Ou com gunicorn:
         $ gunicorn --bind 127.0.0.1:5000 src.application.server:app
+
+    6.2 - É possivel rodar os endpoints no navegador em:
+        - http://127.0.0.1:5000/api/v1/docs
    
-    5 - Para rodar os test:
+    7 - Para rodar os test:
          $ pytest
     
-    5.1 - Testes com covarege (cobertura de teste):
+    7.1 - Testes com covarege (cobertura de teste):
          $ coverage run -m pytest
     
-    5.2 - Para visualizar a cobertura de teste em tela:
+    7.2 - Para visualizar a cobertura de teste em tela:
          $ coverage report -m
 
-    5.3 - Para visualizar a cobertura de teste no navegador:
+    7.3 - Para visualizar a cobertura de teste no navegador:
          $ coverage html
-         $ python -m http.server 8080
-
-    6 - Em http://127.0.0.1:5000/api/v1/docs esta o swagger, sendo possivel rodar os endpoints.
+         $ python -m http.server 8080 -d htmlcov
 
 
 Endpoint:
