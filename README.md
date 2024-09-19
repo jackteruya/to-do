@@ -1,7 +1,5 @@
 Para ambiente linux.
 
-Com do docker instaldo, caso não tenha -> https://docs.docker.com/engine/install/ e https://docs.docker.com/compose/install/
-
 Para rodar a aplicação será necessario ter o python instaldo, de preferencia a versão 3.12:
     
     1 - Craindo o ambiente:
