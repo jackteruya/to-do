@@ -18,9 +18,8 @@ class UpdateToDoUseCase:
             data = ToDoUpdateRequest(**todo_data)
             if self._todo_repository.edit_todo(id, data.title, data.description, data.completed, data.start_date, data.end_date):
                 result = self._todo_repository.get_by_id(id)
-                if not result:
-                    return ResponseFailure(ResponseTypes.NOT_FOUND_ERROR, 'Not Found')
-                return ResponseSuccess(result)
+                if result:
+                    return ResponseSuccess(result)
             return ResponseFailure(ResponseTypes.NOT_FOUND_ERROR, 'Not Found')
         except (ValidationError, ParametersError) as pe:
             return ResponseFailure(
@@ -34,13 +33,3 @@ class UpdateToDoUseCase:
             )
         except Exception as ex:
             return ResponseFailure(ResponseTypes.SYSTEM_ERROR, 'System Error')
-
-    @staticmethod
-    def validate_data(data: dict):
-        update_data = dict()
-        for k, v in data.items():
-            if v is not None:
-                if isinstance(v, str) and re.match(r"(\d{4}-\d{2}-\d{2})", v):
-                    v = datetime.strptime(v, '%Y-%m-%d')
-                update_data[k] = v
-        return update_data
