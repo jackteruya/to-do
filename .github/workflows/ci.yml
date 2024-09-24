@@ -56,5 +56,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Set URL_PREFIX
+        run: run export URL_PREFIX=/api/v1
+
+      - name: Set DB_URL
+        run: run export DB_URL=sqlite:///backend_database_test.db
+
       - name: Executa os testes unitários
         run: pytest
