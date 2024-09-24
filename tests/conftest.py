@@ -1,3 +1,5 @@
+from alembic.command import upgrade as alembic_upgrade
+from alembic.config import Config as AlembicConfig
 from pytest import fixture
 
 from src.application import server
@@ -5,8 +7,14 @@ from src.infra.database.config import DBConnectionHandler
 from src.infra.database.repository.todo_repository import ToDoRepository
 
 
+@fixture(scope="session", autouse=True)
+def migrations():
+    alembic_config = AlembicConfig("alembic.ini")
+    alembic_upgrade(alembic_config, "head")
+
+
 @fixture
-def application():
+def application(migrations):
     server.app.config["TESTING"] = True
     server.app.testing = True
     return server.app
