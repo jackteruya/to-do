@@ -7,11 +7,10 @@ from src.use_case.create_todo import CreateToDoUseCase
 class CreateTodoController:
 
     def __init__(
-            self,
-            todo_repository: ToDoRepositoryInterface = ToDoRepository(DBConnectionHandler)
+        self,
+        todo_repository: ToDoRepositoryInterface = ToDoRepository(DBConnectionHandler),
     ):
         self.use_case = CreateToDoUseCase(todo_repository)
 
     def execute(self, todo_data: dict):
         return self.use_case.execute(todo_data)
-

@@ -7,7 +7,8 @@ from src.use_case.detail_todo import DetailToDoUseCase
 class DetailTodoController:
 
     def __init__(
-            self, todo_repository: ToDoRepositoryInterface = ToDoRepository(DBConnectionHandler)
+        self,
+        todo_repository: ToDoRepositoryInterface = ToDoRepository(DBConnectionHandler),
     ):
         self.use_case = DetailToDoUseCase(todo_repository)
 

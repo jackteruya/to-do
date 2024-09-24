@@ -10,7 +10,7 @@ class DetailToDoUseCase:
         try:
             result = self._todo_repository.get_by_id(id)
             if not result:
-                return ResponseFailure(ResponseTypes.NOT_FOUND_ERROR, 'Not Found')
+                return ResponseFailure(ResponseTypes.NOT_FOUND_ERROR, "Not Found")
             return ResponseSuccess(result)
-        except Exception as ex:
-            return ResponseFailure(ResponseTypes.SYSTEM_ERROR, 'System Error')
+        except Exception:
+            return ResponseFailure(ResponseTypes.SYSTEM_ERROR, "System Error")

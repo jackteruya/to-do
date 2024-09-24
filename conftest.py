@@ -1,4 +1,3 @@
-
 from pytest import fixture
 
 from src.application import server
@@ -19,28 +18,20 @@ def client(application):
         yield client
 
 
-@fixture(scope='session')
+@fixture(scope="session")
 def create_todo_tester():
     db = ToDoRepository(DBConnectionHandler)
-    todo = db.insert(
-        title='Teste ToDO',
-        description='Criando teste',
-        completed=False
-    )
+    todo = db.insert(title="Teste ToDO", description="Criando teste", completed=False)
 
     yield todo
 
     db.delete(todo.id)
 
 
-@fixture(scope='function')
+@fixture(scope="function")
 def create_todo_tester_delete():
     db = ToDoRepository(DBConnectionHandler)
-    todo = db.insert(
-        title='Teste ToDO',
-        description='Criando teste',
-        completed=False
-    )
+    todo = db.insert(title="Teste ToDO", description="Criando teste", completed=False)
 
     yield todo
 

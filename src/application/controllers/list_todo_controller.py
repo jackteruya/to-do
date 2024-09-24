@@ -6,7 +6,10 @@ from src.use_case.list_todo import ListToDoUseCase
 
 class ListTodoController:
 
-    def __init__(self, todo_repository: ToDoRepositoryInterface = ToDoRepository(DBConnectionHandler)):
+    def __init__(
+        self,
+        todo_repository: ToDoRepositoryInterface = ToDoRepository(DBConnectionHandler),
+    ):
         self._use_case = ListToDoUseCase(todo_repository)
 
     def execute(self):
