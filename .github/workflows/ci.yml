@@ -49,18 +49,15 @@ jobs:
       - name: Instala o Python 3.12
         uses: actions/setup-python@v2
         with:
-          python-version: 3.10.6
+          python-version: 3.12
 
       - name: Instala as dependências
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Set URL_PREFIX
-        run: echo "URL_PREFIX=/api/v1" >> .env
-
-      - name: Set DB_URL
-        run: echo "DB_URL=sqlite:///backend_database_test.db" >> .env
+      - name: Migrations
+        run: alembic upgrade head
 
       - name: Executa os testes unitários
         run: pytest
