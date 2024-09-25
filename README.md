@@ -1,3 +1,20 @@
+# TO-DO List
+
+<p align="center">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/jackteruya/to-do.svg">  
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/jackteruya/to-do.svg">
+  <img alt="Coverage" src="https://img.shields.io/badge/coverage-95%25-green">
+  <a href="https://github.com/jackteruya/to-do/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/jackteruya/to-do.svg">
+  </a>
+  <a href="https://github.com/jackteruya/to-do/issues">
+    <img alt="Repository issues" src="https://img.shields.io/github/issues/jackteruya/to-do.svg">
+  </a>
+  <img alt="CI" src="https://img.shields.io/github/actions/workflow/status/jackteruya/to-do/ci.yml">
+</p>
+
+
+
 Para ambiente linux.
 
 Para rodar a aplicação será necessario ter o python instaldo, de preferencia a versão 3.12:
