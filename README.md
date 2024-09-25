@@ -3,7 +3,7 @@
 <p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/jackteruya/to-do.svg">  
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/jackteruya/to-do.svg">
-  <img alt="Coverage" src="https://img.shields.io/badge/coverage-95%25-green">
+  <img alt="Coverage" src="https://img.shields.io/badge/coverage-93%25-green">
   <a href="https://github.com/jackteruya/to-do/commits/master">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/jackteruya/to-do.svg">
   </a>
