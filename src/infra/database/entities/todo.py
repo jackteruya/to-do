@@ -1,13 +1,7 @@
-from datetime import date, datetime
+from datetime import date
 
-from sqlalchemy import (
-    String,
-    BOOLEAN,
-    Date,
-    DateTime,
-    func,
-)
-from sqlalchemy.orm import mapped_column, Mapped
+from sqlalchemy import BOOLEAN, Date, DateTime, String, func
+from sqlalchemy.orm import Mapped, mapped_column
 
 from src.infra.database.config import Base
 
@@ -24,7 +18,9 @@ class ToDo(Base):
     start_date: Mapped[date] = mapped_column(Date, nullable=True)
     end_date: Mapped[date] = mapped_column(Date, nullable=True)
     create_at: Mapped[date] = mapped_column(DateTime, default=func.now())
-    update_at: Mapped[date] = mapped_column(DateTime, default=func.now(), onupdate=func.now())
+    update_at: Mapped[date] = mapped_column(
+        DateTime, default=func.now(), onupdate=func.now()
+    )
 
     def __repr__(self):
         return f"ToDo: [id={self.id}, title={self.title}]"

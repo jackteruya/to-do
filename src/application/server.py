@@ -3,7 +3,6 @@ from flask_restx import Api
 
 from src.application.rest.health_check import health
 from src.application.rest.todo import todo_api
-
 from src.commons.config import settings
 
 
@@ -11,7 +10,9 @@ class ServeApplication:
 
     def __init__(self):
         self.app = Flask(__name__)
-        self._blueprint = Blueprint("api", __name__, url_prefix=f"{settings.url_prefix}")
+        self._blueprint = Blueprint(
+            "api", __name__, url_prefix=f"{settings.url_prefix}"
+        )
 
     def _init_blueprints(self, app):
         api = Api(

@@ -7,7 +7,8 @@ from src.use_case.delete_todo import DeleteToDoUseCase
 class DeleteTodoController:
 
     def __init__(
-            self, todo_repository: ToDoRepositoryInterface = ToDoRepository(DBConnectionHandler)
+        self,
+        todo_repository: ToDoRepositoryInterface = ToDoRepository(DBConnectionHandler),
     ):
         self.use_case = DeleteToDoUseCase(todo_repository)
 

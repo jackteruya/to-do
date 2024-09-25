@@ -7,7 +7,8 @@ from src.use_case.partial_update_todo import PartialUpdateToDoUseCase
 class PartialUpdateTodoController:
 
     def __init__(
-            self, todo_repository: ToDoRepositoryInterface = ToDoRepository(DBConnectionHandler)
+        self,
+        todo_repository: ToDoRepositoryInterface = ToDoRepository(DBConnectionHandler),
     ):
         self.use_case = PartialUpdateToDoUseCase(todo_repository)
 

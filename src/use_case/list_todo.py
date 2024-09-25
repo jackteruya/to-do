@@ -1,5 +1,5 @@
 from src.interfaces.todo_repository import ToDoRepositoryInterface
-from src.response import ResponseTypes, ResponseFailure, ResponseSuccess
+from src.response import ResponseFailure, ResponseSuccess, ResponseTypes
 
 
 class ListToDoUseCase:
@@ -10,7 +10,7 @@ class ListToDoUseCase:
         try:
             result = self._todo_repository.list_todos()
             if result is None:
-                return ResponseFailure(ResponseTypes.PARAMETERS_ERROR, 'Not Found')
+                return ResponseFailure(ResponseTypes.PARAMETERS_ERROR, "Not Found")
             return ResponseSuccess(result)
-        except Exception as ex:
-            return ResponseFailure(ResponseTypes.SYSTEM_ERROR, 'System Error')
+        except Exception:
+            return ResponseFailure(ResponseTypes.SYSTEM_ERROR, "System Error")

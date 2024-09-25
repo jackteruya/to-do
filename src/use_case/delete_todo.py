@@ -1,5 +1,5 @@
 from src.interfaces.todo_repository import ToDoRepositoryInterface
-from src.response import ResponseFailure, ResponseTypes, ResponseSuccess, ResponseDelete
+from src.response import ResponseDelete, ResponseFailure, ResponseTypes
 
 
 class DeleteToDoUseCase:
@@ -10,7 +10,7 @@ class DeleteToDoUseCase:
         try:
             result = self._todo_repository.delete(id)
             if not result:
-                return ResponseFailure(ResponseTypes.NOT_FOUND_ERROR, 'Not Found')
+                return ResponseFailure(ResponseTypes.NOT_FOUND_ERROR, "Not Found")
             return ResponseDelete()
-        except Exception as ex:
-            return ResponseFailure(ResponseTypes.SYSTEM_ERROR, 'System Error')
+        except Exception:
+            return ResponseFailure(ResponseTypes.SYSTEM_ERROR, "System Error")
